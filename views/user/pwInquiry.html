@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>하루사용기 - 비밀번호 찾기</title>
+    <link rel="icon" href="../../assets/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../assets/js/common.js"></script>
+</head>
+<body>
+  <div id="root">
+    <main id="main" class="main">
+      <div class="auth">
+        <h1 class="logo"><span class="logo__img"><span class="blind">하루사용기</span></span></h1>
+
+        <article class="auth__content">
+          <h2 class="auth__title">비밀번호 찾기</h2>
+
+          <form class="auth__form" name="login" action="#" method="post">
+            <div class="auth__login">
+              <div class="auth__login-item">
+                <label class="auth__login-title required" for="loginId">이메일</label>
+                <div class="c-input">
+                  <div class="input-wrap large">
+                    <input class="input" pattern="" type="email" placeholder="회원가입 시 입력한 이메일 주소를 입력해 주세요." id="loginId" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="auth__notice">
+              <p class="auth__notice-text">
+                입력하신 이메일 주소로 임시 비밀번호를 보내드립니다. <br>
+                로그인 후 반드시 비밀번호를 변경해주세요.
+              </p>
+            </div>
+
+            <div class="auth__btn-wrap">
+              <button type="button" class="c-button auth__btn-login default large" disabled>임시 비밀번호 보내기</button>
+              <div class="auth__init">
+                <button type="button" onclick="history.go(-1); return false;" class="auth__init-link">이전 화면으로 돌아가기</button>
+              </div>
+            </div>
+          </form>
+        </article>
+      </div>
+    </main>
+    
+    <footer id="footer" class="footer">
+      <div class="footer__inner">
+        <p class="copy">&copy; 2023 Sunny. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

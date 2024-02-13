@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>하루사용기 - 회원 탈퇴하기</title>
+    <link rel="icon" href="../../assets/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../assets/js/common.js"></script>
+</head>
+<body>
+  <div id="root">
+    <header id="header" class="header">
+      <h1 class="logo"><a href="../../index.html" class="logo__img" title="메인으로 이동"><span class="blind">하루사용기</span></a></h1>
+
+      <nav class="gnb__wrap">
+        <h2 class="blind">주메뉴</h2>
+        <ul id="gnb" class="gnb">
+          <!-- TODO: is-active 선택된 메뉴 li에 클래스 추가
+          확인용 클래스 : first-child -->
+          <li class="gnb__item"><a href="#" class="gnb__link">
+            <span>월별</span>
+          </a></li>
+          <li class="gnb__item"><a href="#" class="gnb__link">
+            <span>년별</span>
+          </a></li>
+          <li class="gnb__item"><a href="#" class="gnb__link">
+            <span>주별</span>
+          </a></li>
+          <li class="gnb__item"><a href="#" class="gnb__link">
+            <span>사용기</span>
+          </a></li>
+          <li class="gnb__item"><a href="#" class="gnb__link">
+            <span>가계분석</span>
+          </a></li>
+        </ul>
+      </nav>
+
+      <div class="header-util">
+        <button type="button" class="c-button tertiary small btn--add btn-modal" data-link="create-record">가계부 입력</button>
+        <div class="usermenu">
+          <button type="button" class="usermenu__button">
+            <strong class="blind">회원 메뉴</strong>
+            <span class="usermenu__account">
+              <span class="blind">현재 로그인 된 계정은 </span>
+              aaa@user.com
+              <span class="blind">입니다.</span>
+            </span>
+          </button>
+
+          <ul class="usermenu__list">
+            <li class="usermenu__item">
+              <a href="views/user/userModify.html" class="usermenu__link" tabindex="-1">
+                <i class="ico ico--set"></i>
+                <span>회원정보</span>
+              </a>
+            </li>
+            <li class="usermenu__item">
+              <!-- TODO: 로그아웃 -->
+              <button type="button" onclick="location.href='views/user/login.html'" class="usermenu__link" tabindex="-1">
+                <i class="ico ico--logout"></i>
+                <span>로그아웃</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="auth">
+        <h2 class="logo"><span class="logo__img"><span class="blind">하루사용기</span></span></h2>
+
+        <article class="auth__content">
+          <h2 class="auth__title">회원 탈퇴하기</h2>
+
+          <div class="auth__notice">
+            <p class="auth__notice-text">
+              회원 탈퇴 시, <em class="warning">개인 정보와 모든 데이터가 즉시 파기되며 복구가 불가</em>합니다. <br>
+              회원 탈퇴 처리를 위해 비밀번호를 다시 한 번 입력해주세요.
+            </p>
+          </div>
+
+          <form class="auth__form" name="login" action="#" method="post">
+            <div class="auth__login">
+              <div class="auth__login-item">
+                <label class="auth__login-title" for="loginId">이메일</label>
+                <div class="c-input">
+                  <div class="input-wrap large">
+                    <input class="input" pattern="" type="email" placeholder="이메일 주소를 입력해 주세요." id="loginId" disabled readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="auth__login-item">
+                <label class="auth__login-title required" for="loginPw">비밀번호</label>
+                <div class="c-input">
+                  <div class="input-wrap large">
+                    <input class="input masking" pattern="[A-Za-z]+" type="password" placeholder="비밀번호를 입력해 주세요." id="loginPw" required>
+                    <button type="button" class="input__masking">
+                      <i class="ico ico--pw-hide"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" aria-hidden="true" style="opacity: 1;"><title lang="en"></title><path data-name="패스 767" d="M0,0H24V24H0ZM0,0H24V24H0ZM0,0H24V24H0ZM0,0H24V24H0Z" fill="none"></path><path class="white" data-name="패스 768" d="M12,6.5a4.938,4.938,0,0,1,4.76,6.46l3.06,3.06A11.8,11.8,0,0,0,23,11.49,11.838,11.838,0,0,0,8.36,4.57l2.17,2.17A5.14,5.14,0,0,1,12,6.5ZM2.71,3.16a1,1,0,0,0,0,1.41L4.68,6.54A11.892,11.892,0,0,0,1,11.5a11.8,11.8,0,0,0,15.31,6.68l2.72,2.72a1,1,0,1,0,1.41-1.41L4.13,3.16A1.008,1.008,0,0,0,2.71,3.16ZM12,16.5a5,5,0,0,1-5-5,4.911,4.911,0,0,1,.49-2.14l1.57,1.57A3.434,3.434,0,0,0,9,11.5a3,3,0,0,0,3,3,2.694,2.694,0,0,0,.57-.07L14.14,16A4.813,4.813,0,0,1,12,16.5Zm2.97-5.33a2.969,2.969,0,0,0-2.64-2.64Z"></path></svg></i>
+                      <i class="ico ico--pw-show"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" aria-hidden="true" style="opacity: 1;"><title lang="en"></title><path data-name="패스 840" d="M0,0H24V24H0Z" fill="none"></path><path class="white" data-name="패스 841" d="M12,4A11.827,11.827,0,0,0,1,11.5a11.817,11.817,0,0,0,22,0A11.827,11.827,0,0,0,12,4Zm0,12.5a5,5,0,1,1,5-5A5,5,0,0,1,12,16.5Zm0-8a3,3,0,1,0,3,3A3,3,0,0,0,12,8.5Z"></path></svg></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="auth__btn-wrap">
+              <button type="button" class="c-button auth__btn-login secondary large" disabled>회원 탈퇴하기</button>
+              <div class="auth__init">
+                <button type="button" onclick="history.go(-1); return false;" class="auth__init-link">이전 화면으로 돌아가기</button>
+              </div>
+            </div>
+          </form>
+        </article>
+      </div>
+    </main>
+    
+    <footer id="footer" class="footer">
+      <div class="footer__inner">
+        <p class="copy">&copy; 2023 Sunny. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+   
+  <div class="layer">
+    <div class="dim">
+      <div class="c-modal" data-modal="create-record">
+        <button type="button" class="c-modal__btn--close">
+          <span class="blind">닫기</span>
+          <i class="ico ico--close"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" aria-hidden="true" style="opacity: 1;"><title lang="en"></title><rect data-name="사각형 1289" width="24" height="24" fill="none"></rect><path class="white" data-name="패스 668" d="M47.81,46.816l5.47-5.47a.75.75,0,0,0-1.061-1.06l-5.47,5.47-5.47-5.47a.75.75,0,0,0-1.061,1.06l5.47,5.47-5.47,5.47a.75.75,0,1,0,1.061,1.061l5.47-5.47,5.47,5.47a.75.75,0,1,0,1.061-1.061Z" transform="translate(-34.75 -34.766)"></path></svg></i>
+        </button>
+        <div class="c-modal__header">
+          <h2 class="c-modal__title">내역 추가</h2>
+          <!-- <p class="c-modal__sub-desc"></p> -->
+        </div>
+
+        <div class="c-modal__content">
+          <div class="create-record">
+            <form class="record__form" name="record" action="#" method="post">
+              <div class="create-record__switch">
+                <div class="c-switch">
+                  <ul class="c-switch__inner-list">
+                    <li class="c-switch__inner-item">
+                      <label class="c-switch__item-label">
+                        <input
+                          name="recordType"
+                          type="radio"
+                          value="decrease"
+                          class="blind c-switch__radio"
+                          checked
+                        />
+                        <span class="c-switch__item-text">지출</span>
+                      </label>
+                    </li>
+                    <li class="c-switch__inner-item">
+                      <label class="c-switch__item-label">
+                        <input
+                          name="recordType"
+                          type="radio"
+                          value="increase"
+                          class="blind c-switch__radio"
+                        />
+                        <span class="c-switch__item-text">수입</span>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="create-record__inner">
+                <div class="create-record__item">
+                  <label class="create-record__item-title required" for="recordDate">날짜</label>
+                  <div class="c-input">
+                    <div class="input-wrap large">
+                      <input class="input" type="date" id="recordDate" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="create-record__item">
+                  <label class="create-record__item-title required" for="recordCate">분류</label>
+                  <select hidden>
+                    <option value="food">식비</option>
+                    <option value="cafe">카페/간식</option>
+                    <option value="life">생활</option>
+                    <option value="shop">쇼핑</option>
+                    <option value="traffic">교통</option>
+                    <option value="home">주거/통신</option>
+                    <option value="pharm">의료/건강</option>
+                    <option value="culture">문화/여가</option>
+                    <option value="travel">여행/숙박</option>
+                    <option value="study">교육/학습</option>
+                  </select>
+
+                  <div class="c-select large">
+                    <button type="button" class="c-select__button" id="recordCate">
+                      <strong class="blind">분류 선택</strong>
+                      <span class="c-select__label">
+                        분류 선택
+                      </span>
+                    </button>
+          
+                    <ul class="c-select__opgroup">
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>식비</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>카페/간식</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>생활</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>쇼핑</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>교통</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>주거/통신</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>의료/건강</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>문화/여가</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>여행/숙박</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>교육/학습</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="create-record__item">
+                  <label class="create-record__item-title required" for="recordMoney">금액</label>
+                  <div class="c-input">
+                    <div class="input-wrap large">
+                      <input class="input" type="text" id="recordMoney" placeholder="지출 금액을 입력해주세요." required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="create-record__item">
+                  <label class="create-record__item-title required" for="recordDesc">내용</label>
+                  <div class="c-input">
+                    <div class="input-wrap large">
+                      <input class="input" type="text" id="recordDesc" placeholder="내용을 입력해주세요." required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="c-modal__footer">
+          <button type="button" class="c-button secondary medium close">취소</button>
+          <button type="button" class="c-button default medium">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

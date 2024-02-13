@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>하루사용기 - 회원가입 완료</title>
+    <link rel="icon" href="../../assets/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../assets/js/common.js"></script>
+</head>
+<body>
+  <div id="root">
+    <main id="main" class="main">
+      <div class="auth">
+        <h1 class="logo"><span class="logo__img"><span class="blind">하루사용기</span></span></h1>
+
+        <article class="auth__content">
+          <h2 class="auth__title">회원가입 완료</h2>
+
+          <div class="auth__notice">
+            <p class="auth__notice-text">
+              안녕하세요! <span class="point">{{ userEmail }}</span>님! <br>
+              회원가입을 진심으로 축하합니다! <br>
+              하루사용기와 함께 가계기록을 쉽고 간편하게 관리해보세요.
+            </p>
+          </div>
+          <div class="auth__btn-wrap">
+            <button type="button" class="c-button auth__btn-login default large" >로그인하기</button>
+          </div>
+        </article>
+      </div>
+    </main>
+    
+    <footer id="footer" class="footer">
+      <div class="footer__inner">
+        <p class="copy">&copy; 2023 Sunny. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

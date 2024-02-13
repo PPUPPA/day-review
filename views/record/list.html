@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>하루사용기</title>
+    <link rel="icon" href="../../assets/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../assets/js/common.js"></script>
+</head>
+<body>
+  <div id="root">
+    <header id="header" class="header">
+      <h1 class="logo"><a href="../../index.html" class="logo__img" title="메인으로 이동"><span class="blind">하루사용기</span></a></h1>
+
+      <nav class="gnb__wrap">
+        <h2 class="blind">주메뉴</h2>
+        <ul id="gnb" class="gnb">
+          <!-- TODO: is-active 선택된 메뉴 li에 클래스 추가
+          확인용 클래스 : first-child -->
+          <li class="gnb__item"><a href="../../index.html" class="gnb__link">
+            <span>월별</span>
+          </a></li>
+          <li class="gnb__item"><a href="#" class="gnb__link">
+            <span>년별</span>
+          </a></li>
+          <li class="gnb__item"><a href="#" class="gnb__link">
+            <span>주별</span>
+          </a></li>
+          <li class="gnb__item is-active"><a href="#" class="gnb__link">
+            <span>사용기</span>
+          </a></li>
+          <li class="gnb__item"><a href="#" class="gnb__link">
+            <span>가계분석</span>
+          </a></li>
+        </ul>
+      </nav>
+
+      <div class="header-util">
+        <button type="button" class="c-button tertiary small btn--add btn-modal" data-link="create-record">가계부 입력</button>
+        <div class="usermenu">
+          <button type="button" class="usermenu__button">
+            <strong class="blind">회원 메뉴</strong>
+            <span class="usermenu__account">
+              <span class="blind">현재 로그인 된 계정은 </span>
+              aaa@user.com
+              <span class="blind">입니다.</span>
+            </span>
+          </button>
+
+          <ul class="usermenu__list">
+            <li class="usermenu__item">
+              <a href="views/user/userModify.html" class="usermenu__link" tabindex="-1">
+                <i class="ico ico--set"></i>
+                <span>회원정보</span>
+              </a>
+            </li>
+            <li class="usermenu__item">
+              <!-- TODO: 로그아웃 -->
+              <button type="button" onclick="location.href='../user/login.html'" class="usermenu__link" tabindex="-1">
+                <i class="ico ico--logout"></i>
+                <span>로그아웃</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <h2 class="blind">메인 컨텐츠</h2>
+      <div class="dashboard">
+        <!-- record-util -->
+        <article class="c-widget widget__record-util">
+          <div class="c-widget__header">
+            <div class="c-widget__title-wrap">
+              <h3 class="c-widget__title record-util__title">2023년 11월</h3>
+              <button type="button" class="c-button icon medium record-util__btn record-util__btn--prev"><span class="blind">이전</span></button>
+              <button type="button" class="c-button icon medium record-util__btn record-util__btn--next"><span class="blind">다음</span></button>
+            </div>
+          </div>
+
+          <div class="c-widget__content">
+            <form name="record-filter" action="#" method="get">
+              <div class="record-util__group">
+                <div class="c-switch">
+                  <ul class="c-switch__inner-list">
+                    <li class="c-switch__inner-item">
+                      <label class="c-switch__item-label">
+                        <input
+                          name="recordLookupDate"
+                          type="radio"
+                          value="monthly"
+                          class="blind c-switch__radio"
+                          checked
+                        />
+                        <span class="c-switch__item-text">월별</span>
+                      </label>
+                    </li>
+                    <li class="c-switch__inner-item">
+                      <label class="c-switch__item-label">
+                        <input
+                          name="recordLookupDate"
+                          type="radio"
+                          value="yearly"
+                          class="blind c-switch__radio"
+                        />
+                        <span class="c-switch__item-text">년별</span>
+                      </label>
+                    </li>
+                    <li class="c-switch__inner-item">
+                      <label class="c-switch__item-label">
+                        <input
+                          name="recordLookupDate"
+                          type="radio"
+                          value="weekly"
+                          class="blind c-switch__radio"
+                        />
+                        <span class="c-switch__item-text">주별</span>
+                      </label>
+                    </li>
+                    <li class="c-switch__inner-item">
+                      <label class="c-switch__item-label">
+                        <input
+                          name="recordLookupDate"
+                          type="radio"
+                          value="other"
+                          class="blind c-switch__radio"
+                        />
+                        <span class="c-switch__item-text">기간</span>
+                      </label>
+                    </li>
+                  </ul>
+
+                  <div class="record-util__date">
+                    <label class="record-util__item-title required" for="recordLookupStart">기간 지정</label>
+                    <div class="c-input">
+                      <div class="input-wrap large">
+                        <input class="input" type="date" id="recordLookupStart" required>
+                      </div>
+                    </div>
+                    <span class="until">~</span>
+                    <div class="c-input">
+                      <div class="input-wrap large">
+                        <input class="input" type="date" id="recordLookupEnd" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="record-util__group">
+                <p><strong class="record-util__item-title">분류</strong></p>
+                <div class="c-switch">
+                  <ul class="c-switch__inner-list">
+                    <li class="c-switch__inner-item">
+                      <label class="c-switch__item-label">
+                        <input
+                          name="recordLookupType"
+                          type="radio"
+                          value="all"
+                          class="blind c-switch__radio"
+                          checked
+                        />
+                        <span class="c-switch__item-text">전체</span>
+                      </label>
+                    </li>
+                    <li class="c-switch__inner-item">
+                      <label class="c-switch__item-label">
+                        <input
+                          name="recordLookupType"
+                          type="radio"
+                          value="decrease"
+                          class="blind c-switch__radio"
+                          checked
+                        />
+                        <span class="c-switch__item-text">지출</span>
+                      </label>
+                    </li>
+                    <li class="c-switch__inner-item">
+                      <label class="c-switch__item-label">
+                        <input
+                          name="recordLookupType"
+                          type="radio"
+                          value="increase"
+                          class="blind c-switch__radio"
+                          checked
+                        />
+                        <span class="c-switch__item-text">수입</span>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="record-util__group">
+                <p><strong class="record-util__item-title">카테고리</strong></p>
+                <ul class="record-util__category">
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-food">
+                      <input type="checkbox" name="cateno" value="식비">
+                      <span>식비</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-shop">
+                      <input type="checkbox" name="cateno" value="쇼핑">
+                      <span>쇼핑</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-cafe">
+                      <input type="checkbox" name="cateno" value="카페/간식">
+                      <span>카페/간식</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-life">
+                      <input type="checkbox" name="cateno" value="생활">
+                      <span>생활</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-traffic">
+                      <input type="checkbox" name="cateno" value="교통/차량">
+                      <span>교통/차량</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-home">
+                      <input type="checkbox" name="cateno" value="주거/통신">
+                      <span>주거/통신</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-pharm">
+                      <input type="checkbox" name="cateno" value="의료/건강">
+                      <span>의료/건강</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-culture">
+                      <input type="checkbox" name="cateno" value="문화/여가">
+                      <span>문화/여가</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-travel">
+                      <input type="checkbox" name="cateno" value="여행/숙박">
+                      <span>여행/숙박</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-study">
+                      <input type="checkbox" name="cateno" value="교육/학습">
+                      <span>교육/학습</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-other">
+                      <input type="checkbox" name="cateno" value="기타지출">
+                      <span>기타지출</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-Isal">
+                      <input type="checkbox" name="cateno" value="급여">
+                      <span>급여</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-Ipin">
+                      <input type="checkbox" name="cateno" value="용돈">
+                      <span>용돈</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-Ifin">
+                      <input type="checkbox" name="cateno" value="금융수입">
+                      <span>금융수입</span>
+                    </label>
+                  </li>
+                  <li class="record-util__category-item">
+                    <label class="c-category-chk cg-Iother">
+                      <input type="checkbox" name="cateno" value="기타수입">
+                      <span>기타수입</span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              
+              <button type="submit" class="c-button default medium">확인</button>
+            </form>
+          </div>
+        </article>
+        <!-- // record-util -->
+
+        <!-- record-list -->
+        <article class="c-widget widget__record-list">
+          <div class="c-widget__header">
+            <div class="c-widget__title-wrap">
+              <h3 class="c-widget__title">사용기</h3>
+            </div>
+            <div class="c-widget__header-util">
+              <button type="button" class="c-button tertiary small">선택해서 삭제</button>
+              <!-- TODO: 선택해서 삭제 버튼 클릭시, 선택해서 삭제 버튼 숨기고 아래 버튼들 노출
+              <button type="button" class="c-button tertiary small">전체내역 삭제</button>
+              <button type="button" class="c-button primary small">선택내역 삭제</button>
+              -->
+            </div>
+          </div>
+
+          <div class="c-widget__content">
+            <div class="record-list">
+              <article class="record-list__summary">
+                <h4 class="blind">기간 사용내역 요약</h4>
+                <ul class="record-list__summary-list">
+                  <li class="record-list__summary-item">
+                    <dl class="record-list__summary-unit">
+                      <dt class="blind">총 건수</dt>
+                      <dd class="record-list__summary-desc">
+                        <span>총</span>
+                        <strong>42</strong>
+                        <span>건</span>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li class="record-list__summary-item">
+                    <dl class="record-list__summary-unit">
+                      <dt class="record-list__summary-title">합계</dt>
+                      <dd class="record-list__summary-desc">
+                        <strong>-813,025</strong>
+                        <span>원</span>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li class="record-list__summary-item">
+                    <dl class="record-list__summary-unit">
+                      <dt class="record-list__summary-title">수입</dt>
+                      <dd class="record-list__summary-desc increase">
+                        <strong>+62,703</strong>
+                        <span>원</span>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li class="record-list__summary-item">
+                    <dl class="record-list__summary-unit">
+                      <dt class="record-list__summary-title">지출</dt>
+                      <dd class="record-list__summary-desc decrease">
+                        <strong>-875,728</strong>
+                        <span>원</span>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+              </article>
+
+              <div class="record-list__inner">
+                <ul class="record-list__list">
+                  <li class="record-list__item">
+                    <p class="record-list__item-day">
+                      <span class="record-list__date">
+                        <strong>15일(금)</strong>
+
+                        <!-- TODO: 선택해서 삭제시 노출
+                        <label class="c-checkbox">
+                          <input class="blind p" type="checkbox" name="record-date-231215" value="true" required>
+                          <i class="ico ico--check-s">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                              <g data-name="사각형 13" class="checkboxBg" stroke-width="1">
+                                <rect width="16" height="16" rx="4" stroke="none"/>
+                                <rect x="0.5" y="0.5" width="15" height="15" rx="3.5" fill="none"/>
+                              </g>
+                              <path data-name="패스 6" class="checkboxChk" d="M-1174.962-329l2.766,3.188,5.375-6.481" transform="translate(1179 337.053)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                            </svg>
+                          </i>
+                          <strong>15일(금)</strong>
+                        </label>
+                        -->
+                      </span>
+                      <span class="record-list__item-day-bill">
+                        <span class="record-list__item-day-price">-210,000원</span>
+                        <span class="record-list__item-day-count">1건</span>
+                      </span>
+                    </p>
+                    <ul class="record-list__unit">
+                      <li class="record-list__unit-item cg-shop">
+                        <button type="button" class="record-list__detail btn-modal" data-link="modify-record">
+                          <span class="record-list__detail-name">
+                            <strong class="desc">쿠팡 주식회사</strong>
+                            <span class="category">쇼핑</span>
+                          </span>
+                          <!-- TODO: 선택해서 삭제시 노출
+                          <label class="c-checkbox">
+                            <input class="blind p" type="checkbox" name="record-date-${id}" value="true" required>
+                            <i class="ico ico--check-s">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                <g data-name="사각형 13" class="checkboxBg" stroke-width="1">
+                                  <rect width="16" height="16" rx="4" stroke="none"/>
+                                  <rect x="0.5" y="0.5" width="15" height="15" rx="3.5" fill="none"/>
+                                </g>
+                                <path data-name="패스 6" class="checkboxChk" d="M-1174.962-329l2.766,3.188,5.375-6.481" transform="translate(1179 337.053)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                              </svg>
+                            </i>
+                            <span class="record-list__detail-name">
+                              <strong class="desc">쿠팡 주식회사</strong>
+                              <span class="category">쇼핑</span>
+                            </span>
+                          </label>
+                          -->
+                          <span class="price decrease">123,456원</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+        <!-- // record-list -->
+      </div>
+    </main>
+    
+    <footer id="footer" class="footer">
+      <div class="footer__inner">
+        <!-- <ul class="footer-util">
+          <li class="footer-util__item"><a href="#" class="footer-util__link"><span>사이트맵</span></a></li>
+        </ul> -->
+        <p class="copy">&copy; 2023 Sunny. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+  
+  <div class="layer">
+    <div class="dim">
+      <div class="c-modal" data-modal="create-record">
+        <button type="button" class="c-modal__btn--close">
+          <span class="blind">닫기</span>
+          <i class="ico ico--close"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" aria-hidden="true" style="opacity: 1;"><title lang="en"></title><rect data-name="사각형 1289" width="24" height="24" fill="none"></rect><path class="white" data-name="패스 668" d="M47.81,46.816l5.47-5.47a.75.75,0,0,0-1.061-1.06l-5.47,5.47-5.47-5.47a.75.75,0,0,0-1.061,1.06l5.47,5.47-5.47,5.47a.75.75,0,1,0,1.061,1.061l5.47-5.47,5.47,5.47a.75.75,0,1,0,1.061-1.061Z" transform="translate(-34.75 -34.766)"></path></svg></i>
+        </button>
+        <div class="c-modal__header">
+          <h2 class="c-modal__title">내역 추가</h2>
+          <!-- <p class="c-modal__sub-desc"></p> -->
+        </div>
+
+        <div class="c-modal__content">
+          <div class="create-record">
+            <form class="record__form" name="record" action="#" method="post">
+              <div class="create-record__switch">
+                <div class="c-switch">
+                  <ul class="c-switch__inner-list">
+                    <li class="c-switch__inner-item">
+                      <label class="c-switch__item-label">
+                        <input
+                          name="recordType"
+                          type="radio"
+                          value="decrease"
+                          class="blind c-switch__radio"
+                          checked
+                        />
+                        <span class="c-switch__item-text">지출</span>
+                      </label>
+                    </li>
+                    <li class="c-switch__inner-item">
+                      <label class="c-switch__item-label">
+                        <input
+                          name="recordType"
+                          type="radio"
+                          value="increase"
+                          class="blind c-switch__radio"
+                        />
+                        <span class="c-switch__item-text">수입</span>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="create-record__inner">
+                <div class="create-record__item">
+                  <label class="create-record__item-title required" for="recordDate">날짜</label>
+                  <div class="c-input">
+                    <div class="input-wrap large">
+                      <input class="input" type="date" id="recordDate" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="create-record__item">
+                  <label class="create-record__item-title required" for="recordCate">분류</label>
+                  <select hidden>
+                    <option value="food">식비</option>
+                    <option value="cafe">카페/간식</option>
+                    <option value="life">생활</option>
+                    <option value="shop">쇼핑</option>
+                    <option value="traffic">교통</option>
+                    <option value="home">주거/통신</option>
+                    <option value="pharm">의료/건강</option>
+                    <option value="culture">문화/여가</option>
+                    <option value="travel">여행/숙박</option>
+                    <option value="study">교육/학습</option>
+                  </select>
+
+                  <div class="c-select large">
+                    <button type="button" class="c-select__button" id="recordCate">
+                      <strong class="blind">분류 선택</strong>
+                      <span class="c-select__label">
+                        분류 선택
+                      </span>
+                    </button>
+          
+                    <ul class="c-select__opgroup">
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>식비</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>카페/간식</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>생활</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>쇼핑</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>교통</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>주거/통신</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>의료/건강</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>문화/여가</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>여행/숙박</span>
+                        </button>
+                      </li>
+                      <li class="c-select__option">
+                        <button type="button" class="c-select__op-button">
+                          <span>교육/학습</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="create-record__item">
+                  <label class="create-record__item-title required" for="recordMoney">금액</label>
+                  <div class="c-input">
+                    <div class="input-wrap large">
+                      <input class="input" type="text" id="recordMoney" placeholder="지출 금액을 입력해주세요." required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="create-record__item">
+                  <label class="create-record__item-title required" for="recordDesc">내용</label>
+                  <div class="c-input">
+                    <div class="input-wrap large">
+                      <input class="input" type="text" id="recordDesc" placeholder="내용을 입력해주세요." required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="c-modal__footer">
+          <button type="button" class="c-button secondary medium close">취소</button>
+          <button type="button" class="c-button default medium">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
